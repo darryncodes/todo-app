@@ -1,0 +1,41 @@
+$clr-primary-200: hsl(192, 100%, 67%);
+$clr-primary-300: hsl(280, 87%, 65%);
+$clr-primary-400: hsl(220, 98%, 61%);
+
+// Light Theme
+
+$clr-light-200: hsl(0, 0%, 98%);
+$clr-light-300: hsl(236, 33%, 92%);
+$clr-light-400: hsl(233, 11%, 84%);
+$clr-light-500: hsl(236, 9%, 61%);
+$clr-light-600: hsl(235, 19%, 35%);
+
+// Dark Theme
+
+$clr-dark-200: hsl(234, 39%, 85%);
+$clr-dark-300: hsl(236, 33%, 92%);
+$clr-dark-400: hsl(234, 11%, 52%);
+$clr-dark-500: hsl(233, 14%, 35%);
+$clr-dark-600: hsl(237, 14%, 26%);
+$clr-dark-700: hsl(235, 24%, 19%);
+$clr-dark-800: hsl(235, 21%, 11%);
+
+$ff-base: 'Josefin Sans', sans-serif;
+
+$fw-regular: 400;
+$fw-bold: 700;
+
+$fs-200: 0.875rem; // 14px
+$fs-300: 1rem; // 16px
+$fs-400: 1.125rem; // 19px
+$fs-500: 1.375rem; // 22px
+$fs-600: 1.75rem; // 28px
+$fs-700: 3.25rem; // 52px
+
+// Responsive breakpoints
+
+$bp-sm: 36em; // 576px
+$bp-md: 48em; // 768px
+$bp-lg: 62em; // 992px
+$bp-xl: 75em; // 1200px
+$bp-xxl: 87.5em; // 1400x
