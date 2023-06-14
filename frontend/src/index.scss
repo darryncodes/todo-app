@@ -4,6 +4,24 @@ body {
     font-family: $ff-base;
     font-weight: $fw-regular;
     font-size: $fs-400;
+    color: $clr-dark-400;
+    background-color: $clr-dark-800;
+}
+
+h1 {
+    color: $clr-dark-200;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.container {
+    max-width: 28rem;
+    margin: 0 auto;
+}
+
+hr {
+    border: 1px solid hsla(0, 0%, 100%, 0.12);
+    width: 100%;
 }
 
 /* Box sizing rules */

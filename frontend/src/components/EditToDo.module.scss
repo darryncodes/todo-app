@@ -1,0 +1,54 @@
+@import '../variables.scss';
+
+.edit {
+    position: relative;
+    top: -50px;
+}
+
+.form {
+    background-color: $clr-dark-700;
+    border-radius: $radius;
+    padding: 2rem;
+
+    &__control {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+
+    &__edit--todo {
+        color: $clr-dark-200;
+        background-color: $clr-dark-600;
+        border-radius: $radius;
+        border-color: transparent;
+    }
+
+    &__complete--todo {
+        justify-self: start;
+    }
+}
+
+.btn {
+    padding: 0.5rem 0;
+    padding-top: 0.7rem;
+    border-radius: $radius;
+    border: none;
+    color: $clr-dark-200;
+    text-transform: uppercase;
+    background: $clr-primary-400;
+}
+
+.btn-submit {
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-back {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    text-align: center;
+    text-decoration: none;
+}

@@ -1,0 +1,10 @@
+@import '../variables.scss';
+
+header {
+    background: linear-gradient(
+        to right,
+        $clr-primary-400,
+        $clr-primary-300 70%
+    );
+    padding: 3rem 1rem;
+}
