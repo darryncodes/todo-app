@@ -11,14 +11,10 @@ app.use(cors());
 import todos from './routes/todos.js';
 
 // middleware
-
+app.use(express.static('../frontend/public'));
 app.use(express.json());
 
 // routes
-app.get('/', (req, res) => {
-    res.send('API is running...');
-});
-
 app.use('/api/v1/todos', todos);
 
 const start = async () => {

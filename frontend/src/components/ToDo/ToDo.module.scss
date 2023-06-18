@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import '../../variables.scss';
 
 .todos {
     background-color: $clr-dark-600;
@@ -30,14 +30,24 @@
 
     &__btn--edit {
         height: 24px;
-        color: $clr-primary-400;
+        color: $clr-dark-400;
+        transition: color 0.3s ease-in;
+
+        &:hover {
+            color: $clr-dark-200;
+        }
     }
 
     &__btn--bin {
         height: 24px;
-        color: $clr-primary-300;
+        color: $clr-dark-400;
         background: transparent;
         cursor: pointer;
         border: none;
+        transition: color 0.3s ease-in;
+
+        &:hover {
+            color: $clr-dark-200;
+        }
     }
 }

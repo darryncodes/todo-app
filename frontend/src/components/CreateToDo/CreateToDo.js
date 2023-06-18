@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import styles from './CreateToDo.module.scss';
 
-const CreateToDo = () => {
+const CreateToDo = (props) => {
     const [input, setInput] = useState('');
 
     const handleInput = (e) => {
         setInput(e.target.value);
-        console.log(input);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        let name = input;
+
+        try {
+            await axios.post('/api/v1/todos', { name });
+            props.showAllTodos();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
