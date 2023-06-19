@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from './EditToDo.module.scss';
 
 const EditToDo = () => {
+    let inputRef = useRef();
+    let checkboxRef = useRef();
     const [input, setInput] = useState('');
     const [isComplete, setIsComplete] = useState(false);
     let { id } = useParams();
 
-    const showTodos = async () => {
+    const showTodo = async () => {
         try {
             const response = await axios.get(`/api/v1/todos/${id}`);
             const { complete, name } = response.data.todo;
@@ -23,7 +25,7 @@ const EditToDo = () => {
     };
 
     useEffect(() => {
-        showTodos();
+        showTodo();
     });
 
     const handleInput = (e) => {
@@ -33,8 +35,19 @@ const EditToDo = () => {
         setIsComplete((prevState) => !prevState);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+            const editedTodo = inputRef.current.value;
+            const completed = checkboxRef.current.checked;
+            await axios.patch(`/api/v1/todos/${id}`, {
+                name: editedTodo,
+                complete: completed,
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -47,7 +60,8 @@ const EditToDo = () => {
                         name='todo'
                         className={styles['form__edit--todo']}
                         onChange={handleInput}
-                        value={input}
+                        defaultValue={input}
+                        ref={inputRef}
                     />
                 </div>
                 <div className={styles['form__control']}>
@@ -56,7 +70,8 @@ const EditToDo = () => {
                         type='checkbox'
                         name='completed'
                         className={styles['form__complete--todo']}
-                        checked={isComplete}
+                        defaultChecked={isComplete}
+                        ref={checkboxRef}
                         onChange={handleComplete}
                     />
                 </div>
