@@ -27,7 +27,7 @@ const ToDo = (props) => {
                     </div>
                     <div className={styles['todos__actions']}>
                         <Link
-                            to='/edit-todo'
+                            to={`/edit-todo/${item._id}`}
                             className={styles['todos__btn--edit']}
                         >
                             <EditIcon />

@@ -21,6 +21,7 @@ const CreateToDo = (props) => {
         } catch (error) {
             console.log(error);
         }
+        setInput('');
     };
 
     return (
@@ -34,6 +35,7 @@ const CreateToDo = (props) => {
                         className={styles['form__input']}
                         placeholder='Create a new todo...'
                         onChange={handleInput}
+                        value={input}
                     />
                 </div>
             </form>

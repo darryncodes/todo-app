@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import styles from './EditToDo.module.scss';
 
 const EditToDo = () => {
     const [input, setInput] = useState('');
     const [isComplete, setIsComplete] = useState(false);
+    let { id } = useParams();
+
+    const showTodos = async () => {
+        try {
+            const response = await axios.get(`/api/v1/todos/${id}`);
+            const { complete, name } = response.data.todo;
+            setInput(name);
+            if (complete) {
+                setIsComplete(true);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        showTodos();
+    });
 
     const handleInput = (e) => {
         setInput(e.target.value);
-        console.log(input);
     };
     const handleComplete = (e) => {
         setIsComplete((prevState) => !prevState);
@@ -29,6 +47,7 @@ const EditToDo = () => {
                         name='todo'
                         className={styles['form__edit--todo']}
                         onChange={handleInput}
+                        value={input}
                     />
                 </div>
                 <div className={styles['form__control']}>
