@@ -28,7 +28,7 @@ const HomePage = () => {
                 <CreateToDo showAllTodos={showTodos} />
             </Header>
             <Main>
-                <ToDo data={data} />
+                <ToDo data={data} showAllTodos={showTodos} />
             </Main>
         </>
     );
