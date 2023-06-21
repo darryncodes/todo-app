@@ -5,7 +5,7 @@ const TodoSchema = new mongoose.Schema({
         type: String,
         required: [true, 'must provide todo'],
         trim: true,
-        maxlength: [30, 'todo can not be more than 30 characters'],
+        maxlength: [100, 'todo can not be more than 100 characters'],
     },
     complete: {
         type: Boolean,

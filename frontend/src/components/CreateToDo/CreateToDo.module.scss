@@ -9,4 +9,28 @@
         padding: 1rem;
         border-color: transparent;
     }
+
+    &__control {
+        position: relative;
+    }
+
+    &__message {
+        position: absolute;
+        left: 0;
+        bottom: -44px;
+    }
+
+    &__messageSuccess {
+        color: #00a565;
+    }
+
+    &__messageError {
+        color: #f63e3c;
+    }
+
+    &__error {
+        outline: 2px solid #f63e3c;
+        color: #f63e3c;
+        border-radius: $radius;
+    }
 }

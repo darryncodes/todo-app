@@ -15,11 +15,18 @@
 
     &__description {
         display: flex;
+        word-wrap: break-word;
     }
 
     &__description p {
         color: $clr-dark-200;
         padding: 1rem;
+        inline-size: 15rem;
+        overflow-wrap: break-word;
+
+        @media only screen and (min-width: $bp-sm) {
+            inline-size: 22rem;
+        }
     }
 
     &__actions {

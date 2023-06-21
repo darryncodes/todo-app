@@ -7,15 +7,19 @@ import styles from './EditToDo.module.scss';
 const EditToDo = () => {
     let inputRef = useRef();
     let checkboxRef = useRef();
-    const [input, setInput] = useState('');
+    const [defaultValue, setDefaultValue] = useState('');
+    const [editedValue, setEditedValue] = useState('');
     const [isComplete, setIsComplete] = useState(false);
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
     let { id } = useParams();
 
     const showTodo = async () => {
         try {
             const response = await axios.get(`/api/v1/todos/${id}`);
             const { complete, name } = response.data.todo;
-            setInput(name);
+            setDefaultValue(name);
             if (complete) {
                 setIsComplete(true);
             }
@@ -29,14 +33,48 @@ const EditToDo = () => {
     });
 
     const handleInput = (e) => {
-        setInput(e.target.value);
+        setDefaultValue(e.target.value);
+
+        setEditedValue(inputRef.current.value);
+
+        if (editedValue.length) {
+            setMessage('');
+            setError(false);
+        }
+
+        if (editedValue.length > 100) {
+            setMessage('You can not exceed 100 characters');
+            setError(true);
+        }
     };
-    const handleComplete = (e) => {
+    const handleComplete = () => {
         setIsComplete((prevState) => !prevState);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (defaultValue === editedValue) {
+            setMessage('Please edit the todo');
+            setError(true);
+            return;
+        }
+
+        if (editedValue.trim().length === 0) {
+            setMessage('Please edit the todo');
+            setError(true);
+            return;
+        }
+        if (editedValue.length > 100) {
+            setMessage('You can not exceed 100 characters');
+            setError(true);
+            return;
+        }
+
+        if (editedValue.length) {
+            setMessage('');
+            setError(false);
+        }
 
         try {
             const editedTodo = inputRef.current.value;
@@ -45,8 +83,15 @@ const EditToDo = () => {
                 name: editedTodo,
                 complete: completed,
             });
+            setMessage('Success, todo edited');
+            setSuccess(true);
+            setTimeout(() => {
+                setMessage('');
+            }, 1750);
         } catch (error) {
             console.log(error);
+            setMessage('There was an error, please try again');
+            setError(true);
         }
     };
 
@@ -58,9 +103,10 @@ const EditToDo = () => {
                     <input
                         type='text'
                         name='todo'
-                        className={styles['form__edit--todo']}
+                        className={`${error ? styles.form__error : null} 
+                        ${styles.form__edit}`}
                         onChange={handleInput}
-                        defaultValue={input}
+                        defaultValue={defaultValue}
                         ref={inputRef}
                     />
                 </div>
@@ -70,9 +116,9 @@ const EditToDo = () => {
                         type='checkbox'
                         name='completed'
                         className={styles['form__complete--todo']}
+                        onChange={handleComplete}
                         defaultChecked={isComplete}
                         ref={checkboxRef}
-                        onChange={handleComplete}
                     />
                 </div>
                 <button
@@ -81,6 +127,15 @@ const EditToDo = () => {
                 >
                     Edit
                 </button>
+                {message && (
+                    <span
+                        className={`${styles.form__message} 
+                        ${error ? styles.form__messageError : null}
+                        ${success ? styles.form__messageSuccess : null}`}
+                    >
+                        {message}
+                    </span>
+                )}
             </form>
             <Link to='/' className={`${styles.btn} ${styles['btn-back']}`}>
                 Back to todo's
