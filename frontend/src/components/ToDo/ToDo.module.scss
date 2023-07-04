@@ -25,6 +25,15 @@
         inline-size: 10rem;
         overflow-wrap: break-word;
 
+        @media only screen and (min-width: 22.5em) {
+            inline-size: 13rem;
+        }
+        @media only screen and (min-width: 25em) {
+            inline-size: 15rem;
+        }
+        @media only screen and (min-width: 28.125em) {
+            inline-size: 18rem;
+        }
         @media only screen and (min-width: $bp-sm) {
             inline-size: 20rem;
         }
