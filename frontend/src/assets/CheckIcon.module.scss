@@ -1,0 +1,17 @@
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background-image: linear-gradient(
+        to right bottom,
+        #3a7bfd,
+        #6675ff,
+        #876efd,
+        #a564fa,
+        #c058f3
+    );
+    transform: translateY(-0.2rem);
+}

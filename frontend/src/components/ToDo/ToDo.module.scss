@@ -15,17 +15,18 @@
 
     &__description {
         display: flex;
+        align-items: center;
         word-wrap: break-word;
     }
 
     &__text {
         color: $clr-dark-200;
         padding: 1rem;
-        inline-size: 15rem;
+        inline-size: 10rem;
         overflow-wrap: break-word;
 
         @media only screen and (min-width: $bp-sm) {
-            inline-size: 22rem;
+            inline-size: 20rem;
         }
     }
 

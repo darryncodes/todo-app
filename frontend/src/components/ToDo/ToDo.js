@@ -5,6 +5,7 @@ import axios from 'axios';
 import styles from './ToDo.module.scss';
 import BinIcon from './../../assets/BinIcon';
 import EditIcon from './../../assets/EditIcon';
+import CheckIcon from '../../assets/CheckIcon';
 
 const ToDo = (props) => {
     const handleDelete = async (e) => {
@@ -23,6 +24,7 @@ const ToDo = (props) => {
             {props.data?.map((item) => (
                 <div className={styles['todos__todo']} key={item._id}>
                     <div className={styles['todos__description']}>
+                        {item.complete === true ? <CheckIcon /> : null}
                         <p
                             className={`${
                                 item.complete === true
