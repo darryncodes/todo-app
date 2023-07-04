@@ -46,16 +46,16 @@
     }
 
     &__messageSuccess {
-        color: #00a565;
+        color: $clr-success;
     }
 
     &__messageError {
-        color: #f63e3c;
+        color: $clr-warning;
     }
 
     &__error {
-        outline: 2px solid #f63e3c;
-        color: #f63e3c;
+        outline: 2px solid $clr-warning;
+        color: $clr-warning;
         border-radius: $radius;
     }
 }

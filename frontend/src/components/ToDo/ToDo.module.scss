@@ -18,7 +18,7 @@
         word-wrap: break-word;
     }
 
-    &__description p {
+    &__text {
         color: $clr-dark-200;
         padding: 1rem;
         inline-size: 15rem;
@@ -27,6 +27,11 @@
         @media only screen and (min-width: $bp-sm) {
             inline-size: 22rem;
         }
+    }
+
+    &__complete {
+        color: $clr-dark-400;
+        text-decoration: line-through;
     }
 
     &__actions {

@@ -23,7 +23,15 @@ const ToDo = (props) => {
             {props.data?.map((item) => (
                 <div className={styles['todos__todo']} key={item._id}>
                     <div className={styles['todos__description']}>
-                        <p>{item.name}</p>
+                        <p
+                            className={`${
+                                item.complete === true
+                                    ? styles.todos__complete
+                                    : null
+                            } ${styles.todos__text}`}
+                        >
+                            {item.name}
+                        </p>
                     </div>
                     <div className={styles['todos__actions']}>
                         <Link

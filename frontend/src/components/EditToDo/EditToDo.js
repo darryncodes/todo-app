@@ -9,7 +9,7 @@ const EditToDo = () => {
     let checkboxRef = useRef();
     const [defaultValue, setDefaultValue] = useState('');
     const [editedValue, setEditedValue] = useState('');
-    const [isComplete, setIsComplete] = useState(false);
+    const [isComplete, setIsComplete] = useState();
     const [message, setMessage] = useState('');
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -20,7 +20,8 @@ const EditToDo = () => {
             const response = await axios.get(`/api/v1/todos/${id}`);
             const { complete, name } = response.data.todo;
             setDefaultValue(name);
-            if (complete) {
+
+            if (complete === true) {
                 setIsComplete(true);
             }
         } catch (error) {
@@ -47,6 +48,7 @@ const EditToDo = () => {
             setError(true);
         }
     };
+
     const handleComplete = () => {
         setIsComplete((prevState) => !prevState);
     };
@@ -54,18 +56,18 @@ const EditToDo = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (defaultValue === editedValue) {
+        if (defaultValue === editedValue && !isComplete) {
             setMessage('Please edit the todo');
             setError(true);
             return;
         }
 
-        if (editedValue.trim().length === 0) {
+        if (editedValue.trim().length === 0 && !isComplete) {
             setMessage('Please edit the todo');
             setError(true);
             return;
         }
-        if (editedValue.length > 100) {
+        if (editedValue.length > 100 && !isComplete) {
             setMessage('You can not exceed 100 characters');
             setError(true);
             return;
@@ -79,6 +81,7 @@ const EditToDo = () => {
         try {
             const editedTodo = inputRef.current.value;
             const completed = checkboxRef.current.checked;
+
             await axios.patch(`/api/v1/todos/${id}`, {
                 name: editedTodo,
                 complete: completed,
